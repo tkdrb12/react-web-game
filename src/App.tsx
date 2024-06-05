@@ -2,15 +2,19 @@ import {
   CameraControls,
   KeyboardControls,
   OrbitControls,
+  Sky,
 } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 import Ground from './component/test/Ground';
 import { Physics } from '@react-three/rapier';
-import Monster from './component/test/Player';
-import Strawberry from './component/test/StrawBerry';
-import Banana from './component/test/Banana';
+
+import FruitProvider from './component/context/FruitStoreProvider';
+import Fruits from './component/test/fruit/Fruits';
+import Shooter from './component/test/Shooter';
+import StrawBerry from './component/test/fruit/Strawberry';
+import { Mesh, Object3D } from 'three';
 
 function App() {
   return (
@@ -28,7 +32,6 @@ function App() {
                 { name: 'jump', keys: ['Space'] },
               ]}
             >
-              <color args={[255 / 255, 117 / 255, 0]} attach={'background'} />
               <OrbitControls />
               <ambientLight intensity={Math.PI / 2} />
               <spotLight
@@ -43,12 +46,14 @@ function App() {
                 decay={0}
                 intensity={Math.PI}
               />
+              <Sky />
 
               <Suspense fallback={null}>
                 <Physics>
-                  <Strawberry />
-                  <Banana position={[0, 10, 0]} />
-
+                  <FruitProvider>
+                    <Fruits />
+                    <Shooter />
+                  </FruitProvider>
                   <Ground />
                 </Physics>
               </Suspense>
