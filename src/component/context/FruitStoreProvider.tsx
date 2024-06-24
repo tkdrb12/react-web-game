@@ -43,7 +43,6 @@ const FruitProvider = ({ children }: PropsWithChildren) => {
       if (newFruitIdx + 1 > fruitKeys.length) return;
 
       const newFruitValue = { type: fruitKeys[newFruitIdx], position };
-      console.log(newFruitValue);
 
       remove(targetKey);
       remove(otherKey);

@@ -37,9 +37,6 @@ const Fruit = ({
     )
       return;
 
-    target.rigidBody?.setLinvel(new Vector3(0.1, 0.1, 0.1), true);
-    other.rigidBody?.setLinvel(new Vector3(0.1, 0.1, 0.1), true);
-
     setTimeout(() => {
       if (!target.rigidBodyObject || !other.rigidBodyObject) return;
 
@@ -59,7 +56,7 @@ const Fruit = ({
 
   useEffect(() => {
     (ref as unknown as MutableRefObject<RigidType>).current.setLinvel(
-      new Vector3(0, 1, 0),
+      new Vector3(0, 2, 0),
       true
     );
   }, [ref, meshRef]);
